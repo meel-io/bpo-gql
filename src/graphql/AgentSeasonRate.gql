@@ -1,0 +1,14 @@
+fragment AgentSeasonRate on SeasonRate {
+  id
+  name
+  seasons {
+    id
+    startDate
+    rooms {
+      id
+      roomType
+      weekdayRate
+      weekendRate
+    }
+  }
+}

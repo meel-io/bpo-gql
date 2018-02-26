@@ -1,0 +1,13 @@
+#import "./AgentRate.gql"
+#import "./AgentSeasonRate.gql"
+
+query Agents {
+  agents {
+    id
+    name
+    rates {
+      ...AgentRate
+      ...AgentSeasonRate
+    }
+  }
+}

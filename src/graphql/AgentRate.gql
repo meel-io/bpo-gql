@@ -1,0 +1,10 @@
+fragment AgentRate on Rate {
+  id
+  name
+  rooms {
+    id
+    roomType
+    weekdayRate
+    weekendRate
+  }
+}
