@@ -1,54 +1,41 @@
-module.exports = `
-# It will increment!
-type Counter {
-  # Number of increments
-  count: Int!
-  # Full message for testing
-  countStr: String
-}
+const types = `
+  type RoomRate {
+    id: ID,
+    roomType: String!
+    weekdayRate: Float!
+    weekendRate: Float!
+  }
 
-# A text message send by users
-type Message {
-  id: ID!
-  # Message content
-  text: String!
-}
+  type Season {
+    id: ID,
+    name: String!
+    startDate: String!
+    rooms: [RoomRate]
+  }
 
-# Input from user to create a message
-input MessageInput {
-  # Message content
-  text: String!
-}
+  type SeasonRate {
+    id: ID,
+    name: String!
+    seasons: [Season]!
+  }
 
-scalar Upload
+  type Rate {
+    id: ID,
+    name: String!
+    rooms: [RoomRate]
+  }
 
-type File {
-  id: ID!
-  path: String!
-  filename: String!
-  mimetype: String!
-  encoding: String!
-}
+  union AllRates = SeasonRate | Rate
 
-type Query {
-  # Test query with a parameter
-  hello(name: String): String!
-  # List of messages sent by users
-  messages: [Message]
-  uploads: [File]
-}
+  type Agent {
+      id: ID
+      name: String!
+      rates: [AllRates]!
+  }
 
-type Mutation {
-  # Add a message and publish it on 'messages' subscription channel
-  messageAdd (input: MessageInput!): Message!
-  singleUpload (file: Upload!): File!
-  multipleUpload (files: [Upload!]!): [File!]!
-}
-
-type Subscription {
-  # This will update every 2 seconds
-  counter: Counter!
-  # When a new message is added
-  messageAdded: Message!
-}
+  type Query { 
+      agents: [Agent]
+  }
 `;
+
+module.exports = types;

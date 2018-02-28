@@ -1,8 +1,6 @@
-const { db } = require("./utils/db");
+const db = require("./utils/schema");
 const { processUpload } = require("./utils/upload");
 
-// Context passed to all resolvers (third argument)
-// eslint-disable-next-line no-unused-vars
 module.exports = req => {
   return {
     db,

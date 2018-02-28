@@ -19,6 +19,7 @@
     "apollo-link-ws": "^1.0.0",
     "apollo-upload-client": "^7.0.0-alpha.4",
     "apollo-utilities": "^1.0.1",
+    "faker": "^4.1.0",
     "graphql": "^0.13.0",
     "lowdb": "^1.0.0",
     "mkdirp": "^0.5.1",
@@ -40,9 +41,5 @@
     "vue-cli-plugin-apollo": "^0.4.1",
     "vue-template-compiler": "^2.5.13"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
 }
