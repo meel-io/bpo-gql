@@ -1,7 +1,7 @@
 const faker = require("faker");
 
 const getRandomQuantity = () => {
-  return Array.from(Array(Math.floor(Math.random() * 10) + 1));
+  return Array.from(Array(Math.floor(Math.random() * 5) + 1));
 };
 
 const getRandomBoolean = () => {
@@ -46,7 +46,7 @@ const getSeason = () => {
     id: faker.random.uuid(),
     name: faker.random.word(),
     startDate: `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`,
-    rooms: []
+    rooms: getRoomRates()
   };
 };
 
@@ -65,7 +65,7 @@ const getRates = () => {
 const getRate = () => {
   return {
     name: getRandomBoolean() ? "Non-refundable" : "default",
-    rooms: []
+    rooms: getRoomRates()
   };
 };
 

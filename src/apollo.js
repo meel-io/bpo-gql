@@ -2,12 +2,16 @@ import { ApolloClient } from "apollo-client";
 import { split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { createUploadLink } from "apollo-upload-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher
+} from "apollo-cache-inmemory";
 import { SubscriptionClient, MessageTypes } from "subscriptions-transport-ws";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 import { createPersistedQueryLink } from "apollo-link-persisted-queries";
 import { setContext } from "apollo-link-context";
+import introspectionQueryResultData from "../live/fragmentTypes.json";
 
 function getAuth() {
   // get the authentication token from local storage if it exists
@@ -61,8 +65,12 @@ export default function createApolloClient({
     httpLink = createPersistedQueryLink().concat(httpLink);
   }
 
+  const fragmentMatcher = new IntrospectionFragmentMatcher({
+    introspectionQueryResultData
+  });
+
   // Apollo cache
-  const cache = new InMemoryCache();
+  const cache = new InMemoryCache({ fragmentMatcher });
 
   if (!ssr) {
     // If on the client, recover the injected state

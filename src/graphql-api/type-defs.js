@@ -28,9 +28,9 @@ const types = `
   union AllRates = SeasonRate | Rate
 
   type Agent {
-      id: ID
-      name: String!
-      rates: [AllRates]!
+    id: ID
+    name: String!
+    rates: [AllRates]!
   }
 
   type Query { 

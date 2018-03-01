@@ -1,3 +1,5 @@
 node_modules
 graphql-api
 vue.config.js
+schemaGenerator.js
+apollo.js

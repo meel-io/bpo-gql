@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "graphql-api": "vue-cli-service graphql-api",
-    "run-graphql-api": "vue-cli-service run-graphql-api"
+    "run-graphql-api": "vue-cli-service run-graphql-api",
+    "fragment": "node schemaGenerator.js"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.0.0",
@@ -41,5 +42,9 @@
     "vue-cli-plugin-apollo": "^0.4.1",
     "vue-template-compiler": "^2.5.13"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
