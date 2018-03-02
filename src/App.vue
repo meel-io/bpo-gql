@@ -40,4 +40,16 @@ h1 {
   padding: 10px 10px;
   font-size: 24px;
 }
+
+.panel-block {
+  padding: 0.4em 0.7em;
+}
+
+.panel {
+  font-size: 0.8rem;
+}
+
+.navbar {
+  margin-bottom: 10px;
+}
 </style>

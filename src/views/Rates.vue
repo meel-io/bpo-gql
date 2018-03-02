@@ -1,11 +1,11 @@
 <template>
-  <div class="rates">
-    <aside>
+  <div class="rates columns">
+    <aside class="column is-one-quarter">
       <agent v-on:selectedAgent="handleSelectedAgent"/>
       <agent-rate v-if="rates.length" v-on:selectedRate="handleSelectedRate" :rates="rates" />
       <agent-season v-if="seasonRates.length" v-on:selectedSeason="handleSelectedSeason" :season-rates="seasonRates" />
     </aside>
-    <section>
+    <section class="column is-three-quarters">
       <room-rate v-if="rooms.length" :rooms="rooms" />
     </section>    
   </div>
@@ -52,17 +52,10 @@ export default {
   }
 }
 </script>
-<style scope>
-aside {
-  float: left;
-  width: 21%;
-  margin-top: 10px;
-}
+<style scoped>
+aside,
 section {
   margin-top: 10px;
-  float: right;
-  width: 78%;
-  padding: 0px 15px;
 }
 </style>
 

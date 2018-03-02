@@ -28,6 +28,6 @@ export default {
 </script>
 <style scoped>
 nav {
-  margin: 10px 0px;
+  margin-bottom: 15px;
 }
 </style>

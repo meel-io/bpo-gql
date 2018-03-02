@@ -36,6 +36,14 @@ const types = `
   type Query { 
       agents: [Agent]
   }
+
+  type Mutation { 
+    setRoomRate(){
+      roomRateId: String!,
+      weekdayRate: Int!,
+      weekendRate: Int!
+    }: [RoomRate]
+  }
 `;
 
 module.exports = types;

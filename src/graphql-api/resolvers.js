@@ -14,5 +14,9 @@ module.exports = {
   },
   Query: {
     agents: (root, args, { db }) => db.getAgents()
+  },
+  Mutation: {
+    setRoomRate: (root, { roomRateId, weekdayRate, weekendRate }, { db }) =>
+      db.setRates(roomRateId, weekdayRate, weekendRate)
   }
 };
