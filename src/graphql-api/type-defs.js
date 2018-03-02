@@ -38,11 +38,11 @@ const types = `
   }
 
   type Mutation { 
-    setRoomRate(){
+    setRoomRate(
       roomRateId: String!,
       weekdayRate: Int!,
       weekendRate: Int!
-    }: [RoomRate]
+    ): [RoomRate]
   }
 `;
 

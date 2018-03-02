@@ -7,13 +7,6 @@ mkdirp(resolve(__dirname, "../../../live"));
 
 const db = new Lowdb(new FileSync(resolve(__dirname, "../../../live/db.json")));
 
-// Seed an empty DB
-db
-  .defaults({
-    agents: []
-  })
-  .write();
-
 module.exports = {
   db
 };

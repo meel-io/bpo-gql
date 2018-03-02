@@ -1,4 +1,4 @@
-const db = require("./db");
+const { db } = require("./db");
 
 const getAgents = () => {
   return db.get("agents").value();
@@ -32,7 +32,7 @@ const agentRateHasRoomRate = (agents, roomRateId) => {
 const ratesHaveRoomRate = (rates, roomRateId) => {
   return rates.find(rate => {
     if (rate.seasons) {
-      return seasons.find(season => {
+      return rate.seasons.find(season => {
         return !!rateHasRoomRate(season.rooms);
       });
     }
@@ -53,7 +53,7 @@ const modifyRateRoomRate = (
   const rate = ratesHaveRoomRate(rates, roomRateId);
 
   if (rate.seasons) {
-    const season = seasons.find(season => {
+    const season = rate.seasons.find(season => {
       return !!ratesHaveRoomRate(season.rooms);
     });
 

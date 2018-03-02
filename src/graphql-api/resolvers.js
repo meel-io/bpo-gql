@@ -17,6 +17,6 @@ module.exports = {
   },
   Mutation: {
     setRoomRate: (root, { roomRateId, weekdayRate, weekendRate }, { db }) =>
-      db.setRates(roomRateId, weekdayRate, weekendRate)
+      db.setRoomRate(roomRateId, weekdayRate, weekendRate)
   }
 };
