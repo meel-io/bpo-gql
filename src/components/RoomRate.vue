@@ -31,6 +31,30 @@ export default {
     toCurrency: value => {
       return Number(value).toFixed(2)
     }
+  },
+  methods: {
+    setRoomRate() {
+      this.$apollo.mutate({
+        mutation: gql`
+          mutation($roomRateId: String!, $weekdayRate: Int!, $weekendRate: Int!) {
+            setRoomRate(
+              roomRateId: $roomRateId
+              weekdayRate: $weekdayRate
+              weekendRate: $weekendRate
+            ) {
+              id
+              weekdayRate
+              weekendRate
+            }
+          }
+        `,
+        variables: {
+          roomRateId: roomRateId,
+          weekdayRate: weekdayRate,
+          weekendRate: weekendRate
+        }
+      })
+    }
   }
 }
 </script>

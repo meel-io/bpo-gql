@@ -10,22 +10,24 @@ const setRoomRate = (roomRateId, weekdayRate = 0, weekendRate = 0) => {
 
   const agent = agentRateHasRoomRate(agents, roomRateId);
 
-  const updatedRates = modifyRoomRate(agent.rates, {
+  const updatedRates = modifyRateRoomRate(agent.rates, {
     roomRateId,
     weekdayRate,
     weekendRate
   });
 
-  agent.assign({ rates: updatedRates }).write();
+  db
+    .get("agents")
+    .find({ id: agent.id })
+    .assign({ rates: updatedRates })
+    .write();
 
   return updatedRates;
 };
 
 const agentRateHasRoomRate = (agents, roomRateId) => {
-  return agents.reduce(agent => {
-    if (ratesHaveRoomRate(agent.rates, roomRateId)) {
-      return agent;
-    }
+  return agents.find(agent => {
+    return !!ratesHaveRoomRate(agent.rates, roomRateId);
   });
 };
 
@@ -36,7 +38,7 @@ const ratesHaveRoomRate = (rates, roomRateId) => {
         return !!rateHasRoomRate(season.rooms);
       });
     }
-    return !!rateHasRoomRate(rates.rooms, roomRateId);
+    return !!rateHasRoomRate(rate.rooms, roomRateId);
   });
 };
 
@@ -73,7 +75,7 @@ const modifyRateRoomRate = (
 
 modifyRoomRate = (rooms, { roomRateId, weekdayRate, weekendRate }) => {
   const roomRate = rooms.find(room => {
-    room.id == roomRateId;
+    return room.id == roomRateId;
   });
 
   roomRate.weekdayRate = weekdayRate;
