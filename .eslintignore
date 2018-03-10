@@ -3,3 +3,4 @@ graphql-api
 vue.config.js
 schemaGenerator.js
 apollo.js
+src/vue-apollo.js

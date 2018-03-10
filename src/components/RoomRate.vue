@@ -7,53 +7,36 @@
     v-for="room in rooms" :key="room.id">
       <p>{{ room.roomType }}</p>
       <div class="columns">
-        <div class="column">
-          <label class="label">Weekday: </label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input" :value="room.weekendRate | toCurrency">
-          </div>
-        </div>  
-        <div class="column">
-          <label class="label">Weekend: </label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input" :value="room.weekendRate | toCurrency">
-          </div>
-        </div>  
+        <rate v-on:updateRate="handleUpdatedRate" type="Weekday" :room-rate-id="room.id" :value="room.weekdayRate" />
+        <rate v-on:updateRate="handleUpdatedRate" type="Weekend" :room-rate-id="room.id" :value="room.weekendRate" /> 
       </div>
     </div>
   </div>
 </template>
 <script>
+import Rate from "@/components/Rate.vue"
+import { UPDATE_RATE } from "../graphql/updateRate.js"
+
 export default {
   name: "RoomRate",
   props: ["rooms"],
-  filters: {
-    toCurrency: value => {
-      return Number(value).toFixed(2)
-    }
+  components: {
+    Rate
   },
   methods: {
-    setRoomRate() {
-      this.$apollo.mutate({
-        mutation: gql`
-          mutation($roomRateId: String!, $weekdayRate: Int!, $weekendRate: Int!) {
-            setRoomRate(
-              roomRateId: $roomRateId
-              weekdayRate: $weekdayRate
-              weekendRate: $weekendRate
-            ) {
-              id
-              weekdayRate
-              weekendRate
-            }
-          }
-        `,
-        variables: {
-          roomRateId: roomRateId,
-          weekdayRate: weekdayRate,
-          weekendRate: weekendRate
-        }
-      })
+    handleUpdatedRate(payload) {
+      this.$apollo
+        .mutate({
+          mutation: UPDATE_RATE,
+          variables: payload,
+          update: (proxy, { data: payload }) => {}
+        })
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
     }
   }
 }

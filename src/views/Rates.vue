@@ -16,7 +16,6 @@ import Agent from "@/components/Agent.vue"
 import AgentRate from "@/components/AgentRate.vue"
 import AgentSeason from "@/components/AgentSeason.vue"
 import RoomRate from "@/components/RoomRate.vue"
-
 export default {
   name: "rates",
   data() {
@@ -58,4 +57,3 @@ section {
   margin-top: 10px;
 }
 </style>
-
